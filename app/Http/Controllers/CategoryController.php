@@ -20,9 +20,15 @@ public function create()
 
 public function store(Request $request)
 {
+    $request->validate([
+        'name' => 'required'
+    ]);
+
     Category::create($request->all());
+
     return redirect('/categories');
 }
+
 
 public function edit(Category $category)
 {
@@ -31,7 +37,12 @@ public function edit(Category $category)
 
 public function update(Request $request, Category $category)
 {
+    $request->validate([
+        'name' => 'required'
+    ]);
+
     $category->update($request->all());
+
     return redirect('/categories');
 }
 
